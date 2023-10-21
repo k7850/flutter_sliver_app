@@ -24,6 +24,23 @@ class FirstAppbar extends StatelessWidget {
             ),
             elevation: 0,
           ),
+          SliverPersistentHeader(
+            pinned: true,
+            floating: false,
+            delegate: MySliverPersistentHeaderDelegate(
+              minHeight: 50.0,
+              maxHeight: 120.0,
+              child: Container(
+                color: Colors.blue[300],
+                child: const Center(
+                  child: Text(
+                    'SliverPersistentHeader',
+                    style: TextStyle(color: Colors.white, fontSize: 20),
+                  ),
+                ),
+              ),
+            ),
+          ),
           SliverAppBar(
             pinned: true,
             title: Text("appbar1", style: TextStyle(color: Colors.white)),
@@ -41,5 +58,33 @@ class FirstAppbar extends StatelessWidget {
         ],
       ),
     );
+  }
+}
+
+class MySliverPersistentHeaderDelegate extends SliverPersistentHeaderDelegate {
+  MySliverPersistentHeaderDelegate({
+    required this.minHeight,
+    required this.maxHeight,
+    required this.child,
+  });
+
+  final double minHeight;
+  final double maxHeight;
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
+    return SizedBox.expand(child: child);
+  }
+
+  @override
+  double get maxExtent => maxHeight;
+
+  @override
+  double get minExtent => minHeight;
+
+  @override
+  bool shouldRebuild(covariant MySliverPersistentHeaderDelegate oldDelegate) {
+    return maxHeight != oldDelegate.maxHeight || minHeight != oldDelegate.minHeight || child != oldDelegate.child;
   }
 }

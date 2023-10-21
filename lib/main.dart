@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_sliver_app/appbar/my_home_page.dart';
+import 'package:flutter_sliver_app/appbar/my_third_sliver.dart';
 
 import 'appbar/first_appbar.dart';
 import 'appbar/fourth_appbar.dart';
@@ -25,6 +27,11 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ThirdAppbar();
+    // return MyThirdSliver(); // 앱바 크기조절가능, 조절하면 모양도 변경 가능
+    return MyHomePage();
+    // return FirstAppbar();
+    // return SecondAppbar();
+    // return ThirdAppbar();
+    // return FourthAppbar();
   }
 }
